@@ -5,6 +5,9 @@ public class Main
 {
 	static int counter;
 	static Scanner in = new Scanner(System.in);
+	static int start;
+	static int end;
+	static int mid;
 	
 	public static void main(String [] args)
 	{
@@ -14,7 +17,7 @@ public class Main
 	public static void run(){
 		System.out.println("Would you like to check a new range?");
 		
-		if(!in.next().equals("n"))
+		if(!in.next().toLowerCase().equals("n"))
 		{			
 			int[] nums = fillArray();
 			getItem(nums);
@@ -56,15 +59,15 @@ public class Main
 	
 	public static void binSearch(int val, int[] arr, int start, int end){
 		counter++;
-		int mid = (start + end) / 2;
+		mid = (start + end) / 2;
 		
 		//System.out.println(start + " " + mid + " " + end);
 		//System.out.println(start - end);
 		
 		if(val > arr[mid]){
-			binSearch(val, arr, mid, end);
+			binSearch(val, arr, mid + 1, end);
 		}else if(val < arr[mid]){
-			binSearch(val, arr, start, mid);
+			binSearch(val, arr, start, mid - 1);
 		}else{
 			System.out.println("The program searched " + counter + " times to find " + val);
 		}
@@ -72,9 +75,9 @@ public class Main
 	
 	public static int[] fillArray(){
 		System.out.println("Enter beginning of search: ");
-		int start = in.nextInt();
+		start = in.nextInt();
 		System.out.println("Enter end of search: ");
-		int end = in.nextInt();
+		end = in.nextInt();
 		
 		if((end - start) <= 0)
 		{
