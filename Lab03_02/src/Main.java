@@ -17,7 +17,7 @@ public class Main
 	public static void run(){
 		System.out.println("Would you like to check a new range?");
 		
-		if(!in.next().toLowerCase().equals("n"))
+		if(!in.next().toLowerCase().trim().equals("n"))
 		{			
 			int[] nums = fillArray();
 			getItem(nums);
@@ -35,11 +35,16 @@ public class Main
 	
 	public static void getItem(int[] arr)
 	{
+		int val;
 		
 		//Get value from user
-		System.out.println("Please enter value to search: ");		
-		int val = in.nextInt();
-		
+		System.out.println("Please enter value to search: ");				
+		while(!in.hasNextInt())
+		{
+			System.out.println("Please enter an integer");
+			in.next();
+		}
+		val = in.nextInt();
 		//Test to see if value is within parameters
 		while(val < arr[arr.length - arr.length] || val > arr[arr.length - 1]){
 			System.out.println("Value must be within range");
